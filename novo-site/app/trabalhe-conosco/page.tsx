@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Icon } from "@/components/Icon";
@@ -101,6 +102,29 @@ export default function CareersPage() {
                 <p>{value.description}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section gptw-section" aria-labelledby="gptw-title">
+        <div className="container gptw-layout">
+          <figure className="gptw-badge">
+            <Image
+              src="/images/selo-gptw.png"
+              alt="Selo Great Place to Work, empresa certificada no Brasil"
+              width={400}
+              height={566}
+            />
+          </figure>
+          <div className="gptw-copy">
+            <p className="gptw-kicker">Great Place to Work</p>
+            <h2 id="gptw-title">Somos GPTW!</h2>
+            <p>
+              O Grupo Affix é uma empresa certificada pelo Great Place to Work, reconhecimento que destaca as melhores empresas para trabalhar no Brasil.
+            </p>
+            <p>
+              O selo nasce da opinião de quem vive a Affix todos os dias: é o nosso time que responde à pesquisa e avalia o ambiente em pilares como confiança, orgulho e camaradagem. Essa conquista reforça o compromisso de construir um lugar onde as pessoas gostam de estar e crescem junto com a empresa.
+            </p>
           </div>
         </div>
       </section>

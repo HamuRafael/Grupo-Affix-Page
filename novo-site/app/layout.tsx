@@ -10,6 +10,7 @@ import { WhatsappButton } from "@/components/WhatsappButton";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Interactions } from "@/components/Interactions";
 import { ContactModal } from "@/components/ContactModal";
+import { SuccessPopup } from "@/components/SuccessPopup";
 import { SimulatorModal } from "@/components/SimulatorModal";
 import { defaultDescription, defaultKeywords, defaultOgImage, siteName, siteUrl } from "@/data/seo";
 
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         {children}
         <Footer />
         <ContactModal />
+        <SuccessPopup />
         <SimulatorModal />
         <WhatsappButton />
         <CookieConsent enabled={process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === "true"} />

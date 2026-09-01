@@ -25,19 +25,44 @@ export function JobApplicationForm({ jobTitle }: { jobTitle: string }) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setState("submitting"); setFeedback("");
+    // Guardar a referência antes do await: o React invalida event.currentTarget
+    // depois que o handler devolve o controle, e o reset() quebraria com null.
+    const form = event.currentTarget;
     if (modoDemonstracao()) {
       setState("demo");
       setFeedback("Candidatura validada em modo de demonstração. Em produção o currículo é entregue ao RH normalmente.");
+      // Mostra o mesmo pop-up de produção para dar para revisar o visual localmente.
+      window.dispatchEvent(
+        new CustomEvent("affix:sucesso", {
+          detail: {
+            titulo: "Candidatura enviada!",
+            mensagem: "Recebemos seu currículo. Se o seu perfil combinar com uma oportunidade, nosso time entra em contato.",
+          },
+        }),
+      );
       return;
     }
     try {
-      const response = await fetch(CAREERS_ENDPOINT, { method: "POST", body: new FormData(event.currentTarget) });
+      const response = await fetch(CAREERS_ENDPOINT, { method: "POST", body: new FormData(form) });
       const result = (await response.json()) as { message?: string; mode?: string };
       if (!response.ok) throw new Error(result.message || "Não foi possível enviar sua candidatura.");
-      event.currentTarget.reset();
+      form.reset();
       setTelefone(""); // reset() não alcança campos controlados pelo React.
-      setState(result.mode === "demo" ? "demo" : "success");
-      setFeedback(result.message || "Candidatura enviada com sucesso.");
+      if (result.mode === "demo") {
+        setState("demo");
+        setFeedback(result.message || "Candidatura validada em modo de demonstração.");
+      } else {
+        setState("success");
+        setFeedback("");
+        window.dispatchEvent(
+          new CustomEvent("affix:sucesso", {
+            detail: {
+              titulo: "Candidatura enviada!",
+              mensagem: "Recebemos seu currículo. Se o seu perfil combinar com uma oportunidade, nosso time entra em contato.",
+            },
+          }),
+        );
+      }
     } catch (error) {
       setState("error"); setFeedback(error instanceof Error ? error.message : "Não foi possível enviar sua candidatura.");
     }

@@ -103,6 +103,16 @@ export function ContactForm() {
       setState("demo");
       setFeedback("Formulário validado. O envio fica desligado no ambiente local; em produção a mensagem é entregue normalmente.");
       resetRecaptcha(form);
+      // Mostra o mesmo pop-up de produção para dar para revisar o visual localmente.
+      window.dispatchEvent(new CustomEvent("affix:close-contact"));
+      window.dispatchEvent(
+        new CustomEvent("affix:sucesso", {
+          detail: {
+            titulo: "Mensagem enviada!",
+            mensagem: "Recebemos sua solicitação. Um especialista do Grupo Affix entra em contato em breve.",
+          },
+        }),
+      );
       return;
     }
 
@@ -136,11 +146,22 @@ export function ContactForm() {
       }
 
       setState("success");
-      setFeedback("Mensagem enviada com sucesso. Nossa equipe entrará em contato.");
+      setFeedback("");
       form.reset();
       // O reset do form não alcança campos controlados pelo React.
       setCnpj("");
       setTelefone("");
+      // Se o envio veio do modal, ele sai da frente antes do pop-up aparecer.
+      // Strings literais para não criar import circular com ContactModal.
+      window.dispatchEvent(new CustomEvent("affix:close-contact"));
+      window.dispatchEvent(
+        new CustomEvent("affix:sucesso", {
+          detail: {
+            titulo: "Mensagem enviada!",
+            mensagem: "Recebemos sua solicitação. Um especialista do Grupo Affix entra em contato em breve.",
+          },
+        }),
+      );
     } catch (error) {
       setState("error");
       setFeedback(error instanceof Error ? error.message : "Não foi possível enviar sua mensagem.");
