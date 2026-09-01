@@ -4,10 +4,24 @@ import Script from "next/script";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import type { SimulationData } from "@/components/Simulator";
 import { Icon } from "@/components/Icon";
+import { CNPJ_PATTERN, TELEFONE_PATTERN, formatarCnpj, formatarTelefone } from "@/lib/mascaras";
 
 type FormState = "idle" | "submitting" | "success" | "error" | "demo";
 
 const currency = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+// Site estático: o envio vai direto ao script PHP que roda junto com o site.
+// Em produção é o mesmo domínio; para testar envio real no localhost, defina
+// NEXT_PUBLIC_CONTACT_ENDPOINT com a URL completa do script em produção.
+const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/php/sendemail.php";
+
+// No ambiente local sem endpoint explícito o formulário só valida, sem enviar,
+// para não gerar contatos falsos na caixa da equipe durante o desenvolvimento.
+function modoDemonstracao() {
+  if (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT) return false;
+  const host = window.location.hostname;
+  return host === "localhost" || host === "127.0.0.1" || host.startsWith("192.168.");
+}
 
 // O token do reCAPTCHA vale para um envio só; sem limpar, uma segunda tentativa falha.
 // Em /contato e /simulador existem dois formulários na página, o da seção e o do modal,
@@ -25,10 +39,13 @@ function resetRecaptcha(form: HTMLFormElement) {
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [feedback, setFeedback] = useState("");
+  const [cnpj, setCnpj] = useState("");
+  const [telefone, setTelefone] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   // Mesma chave usada pelo site atual; o PHP que recebe o envio valida o token.
+  // Chave pública do reCAPTCHA v2 do Grupo Affix (grupoaffix.com.br e localhost).
   const recaptchaSiteKey =
-    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "6LfHw5QsAAAAALVNBZNSOTKZPZHV7WFUNLlcJFGE";
+    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LdeSKMtAAAAAHNF4vdsOquPGPKyRO0ZQ37VKnRr";
 
   useEffect(() => {
     function applySimulation(event: Event) {
@@ -54,26 +71,57 @@ export function ContactForm() {
     setFeedback("Enviando sua solicitação…");
 
     const form = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const campos = new FormData(form);
+    const recaptchaToken = String(campos.get("g-recaptcha-response") || "").trim();
+
+    if (!recaptchaToken) {
+      setState("error");
+      setFeedback("Confirme o reCAPTCHA para enviar.");
+      return;
+    }
+
+    if (modoDemonstracao()) {
+      setState("demo");
+      setFeedback("Formulário validado. O envio fica desligado no ambiente local; em produção a mensagem é entregue normalmente.");
+      resetRecaptcha(form);
+      return;
+    }
+
+    // O script PHP não tem campo para a solução de interesse, então ela entra na mensagem.
+    const corpo = [`Solução de interesse: ${String(campos.get("service") || "")}`, "", String(campos.get("message") || "")].join("\n");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" },
+        body: new URLSearchParams({
+          fullName: String(campos.get("fullName") || ""),
+          email: String(campos.get("email") || ""),
+          phone: String(campos.get("phone") || ""),
+          cnpj: String(campos.get("cnpj") || ""),
+          annualRevenue: String(campos.get("annualRevenue") || ""),
+          message: corpo,
+          website: String(campos.get("website") || ""),
+          "g-recaptcha-response": recaptchaToken,
+        }).toString(),
       });
-      const data = (await response.json()) as { message?: string; mode?: string };
+      const texto = (await response.text()).toLowerCase();
 
-      if (!response.ok) throw new Error(data.message ?? "Não foi possível enviar sua mensagem.");
-
-      if (data.mode === "demo") {
-        setState("demo");
-        setFeedback("Formulário validado. O envio fica desligado no ambiente local; em produção a mensagem é entregue normalmente.");
-      } else {
-        setState("success");
-        setFeedback("Mensagem enviada com sucesso. Nossa equipe entrará em contato.");
-        form.reset();
+      // O PHP responde "OK" no sucesso; qualquer outro texto é uma mensagem de erro.
+      if (!response.ok || (!texto.startsWith("ok") && texto !== "")) {
+        if (texto.includes("captcha")) throw new Error("Confirme o reCAPTCHA para enviar.");
+        if (texto.includes("preencha") || texto.includes("não é válido")) {
+          throw new Error("Revise os campos obrigatórios e tente novamente.");
+        }
+        throw new Error("Não foi possível enviar agora. Use telefone ou WhatsApp.");
       }
+
+      setState("success");
+      setFeedback("Mensagem enviada com sucesso. Nossa equipe entrará em contato.");
+      form.reset();
+      // O reset do form não alcança campos controlados pelo React.
+      setCnpj("");
+      setTelefone("");
     } catch (error) {
       setState("error");
       setFeedback(error instanceof Error ? error.message : "Não foi possível enviar sua mensagem.");
@@ -95,11 +143,36 @@ export function ContactForm() {
         </label>
         <label>
           <span>Telefone *</span>
-          <input name="phone" type="tel" autoComplete="tel" inputMode="tel" minLength={10} maxLength={20} required placeholder="(61) 99999-9999" />
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            inputMode="tel"
+            value={telefone}
+            onChange={(event) => setTelefone(formatarTelefone(event.target.value))}
+            pattern={TELEFONE_PATTERN}
+            title="Informe o telefone com DDD"
+            maxLength={15}
+            required
+            placeholder="(61) 99999-9999"
+          />
         </label>
         <label>
           <span>CNPJ *</span>
-          <input name="cnpj" type="text" inputMode="numeric" minLength={14} maxLength={18} required placeholder="00.000.000/0001-00" />
+          <input
+            name="cnpj"
+            type="text"
+            inputMode="numeric"
+            value={cnpj}
+            onChange={(event) => setCnpj(formatarCnpj(event.target.value))}
+            // pattern em vez de minLength: o aviso do navegador fala em dígitos,
+            // não em "18 caracteres", que ninguém conta ao digitar um CNPJ.
+            pattern={CNPJ_PATTERN}
+            title="Informe os 14 dígitos do CNPJ"
+            maxLength={18}
+            required
+            placeholder="00.000.000/0001-00"
+          />
         </label>
         <label>
           <span>Solução de interesse *</span>

@@ -71,24 +71,5 @@ export const jobs: Job[] = [
       "Conhecimento de Excel",
     ],
   },
-  {
-    title: "Estágio em Marketing",
-    area: "Marketing",
-    type: "Estágio",
-    location: "Brasília/DF, presencial",
-    summary:
-      "Apoio à presença digital do Grupo Affix: redes sociais, conteúdos do blog e materiais comerciais.",
-    responsibilities: [
-      "Produzir conteúdos para redes sociais e blog",
-      "Apoiar campanhas e materiais de apoio ao comercial",
-      "Acompanhar métricas de site e redes",
-      "Participar de ações internas de comunicação",
-    ],
-    requirements: [
-      "Cursando Marketing, Publicidade, Comunicação ou áreas afins",
-      "Interesse pelo mercado financeiro",
-      "Familiaridade com ferramentas de design é diferencial",
-      "Vontade de aprender e propor ideias",
-    ],
-  },
+  
 ];

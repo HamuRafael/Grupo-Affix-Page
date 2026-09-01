@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { solutions } from "@/data/site";
+import { enableSolutionCardHoverImages, solutions } from "@/data/site";
 import { Icon } from "@/components/Icon";
 import { SectionHeading } from "@/components/SectionHeading";
 
@@ -17,7 +17,14 @@ export function Solutions() {
         </div>
         <div className="solutions-grid">
           {solutions.map((solution) => (
-            <Link className="solution-card" href={solution.href} key={solution.title}>
+            <Link
+              className={enableSolutionCardHoverImages ? "solution-card solution-card--with-image" : "solution-card"}
+              href={solution.href}
+              key={solution.title}
+            >
+              {enableSolutionCardHoverImages ? (
+                <span className="solution-card-visual" style={{ backgroundImage: `url(${solution.image})` }} aria-hidden="true" />
+              ) : null}
               <span className="solution-icon"><Icon name={solution.icon} size={24} /></span>
               <h3>{solution.title}</h3>
               <span className="solution-card-link">

@@ -1,0 +1,64 @@
+# Grupo Affix — configuração do site estático na Locaweb (Apache)
+# Substitui os redirects e headers que antes ficavam no next.config.ts.
+
+AddDefaultCharset UTF-8
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Sempre HTTPS (se o site entrar em loop de redirecionamento, remova estas 2 linhas)
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # /index.html -> /
+  RewriteCond %{THE_REQUEST} \s/index\.html [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # URLs do site antigo -> páginas novas (301 preserva o valor de SEO acumulado)
+  RewriteRule ^pages/index\.html$ / [R=301,L]
+  RewriteRule ^pages/quemsomos\.html$ /quem-somos [R=301,L]
+  RewriteRule ^pages/solucoes\.html$ /#solucoes [R=301,L,NE]
+  RewriteRule ^pages/antecipacao\.html$ /solucoes/antecipacao-de-recebiveis [R=301,L]
+  RewriteRule ^pages/capitalgiro\.html$ /solucoes/capital-de-giro [R=301,L]
+  RewriteRule ^pages/creditoagro\.html$ /solucoes/solucoes-agro [R=301,L]
+  RewriteRule ^pages/contaescrow\.html$ /solucoes/conta-escrow [R=301,L]
+  RewriteRule ^pages/fomentoimobiliario\.html$ /solucoes/credito-para-construtoras [R=301,L]
+  RewriteRule ^pages/contato\.html$ /contato [R=301,L]
+  RewriteRule ^pages/reuniao\.html$ /contato [R=301,L]
+  RewriteRule ^pages/blog\.html$ /blog [R=301,L]
+  RewriteRule ^pages/blog-detalhes\.html$ /blog/o-que-e-securitizacao [R=301,L]
+  RewriteRule ^pages/trabalheconosco\.html$ /trabalhe-conosco [R=301,L]
+  RewriteRule ^pages/mensagemEnviada\.html$ / [R=301,L]
+  RewriteRule ^auth/login\.html$ / [R=301,L]
+
+  # O export do Next gera "quem-somos.html"; isto serve a URL limpa /quem-somos.
+  # Sem a checagem de diretório de propósito: o export também cria pastas homônimas
+  # sem index.html (só com arquivos internos), e o .html precisa ganhar delas.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^.]+?)/?$ $1.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header set Content-Security-Policy "frame-ancestors 'self'; object-src 'none'; base-uri 'self'"
+
+  # JS, CSS e fontes do export têm hash no nome: podem ficar em cache por 1 ano
+  <FilesMatch "\.(js|css|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/avif "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>

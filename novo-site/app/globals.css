@@ -686,6 +686,7 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
 }
 
 .solution-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -694,7 +695,32 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.solution-card-visual {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+
+.solution-card-visual::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(9, 11, 13, 0.88), rgba(9, 11, 13, 0.62));
+  content: "";
+}
+
+.solution-card > :not(.solution-card-visual) {
+  position: relative;
+  z-index: 1;
 }
 
 .solution-card:hover {
@@ -733,6 +759,26 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
 
 .solution-card:hover .solution-card-link svg {
   transform: translateX(4px);
+}
+
+@media (hover: hover) {
+  .solution-card--with-image:hover .solution-card-visual {
+    opacity: 1;
+  }
+
+  .solution-card--with-image:hover h3,
+  .solution-card--with-image:hover .solution-card-link {
+    color: white;
+  }
+}
+
+.solution-card--with-image:focus-visible .solution-card-visual {
+  opacity: 1;
+}
+
+.solution-card--with-image:focus-visible h3,
+.solution-card--with-image:focus-visible .solution-card-link {
+  color: white;
 }
 
 /* Process */
@@ -2378,6 +2424,45 @@ body.interactions-ready .process-steps li.is-active .step-number {
 .job-card-body .button {
   margin-top: 24px;
 }
+
+.job-application-form {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  margin-top: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-muted);
+}
+
+.job-application-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.job-application-form input:not([type="checkbox"]),
+.job-application-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(31, 35, 38, 0.18);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  font: inherit;
+}
+
+.job-application-form textarea { resize: vertical; }
+.job-application-form input[type="file"] { min-height: auto; padding: 10px; }
+.job-application-form input:focus, .job-application-form textarea:focus { border-color: var(--gold-dark); box-shadow: 0 0 0 3px rgba(194, 148, 49, 0.16); }
+.job-application-form small { color: var(--muted); font-weight: 500; }
+.job-application-form .button { width: fit-content; margin-top: 0; }
+.job-application-title { margin: 0; font-size: 1.05rem; }
 
 /* Modal de contato */
 .contact-modal {

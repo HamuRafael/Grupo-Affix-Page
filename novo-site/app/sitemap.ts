@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import type { MetadataRoute } from "next";
 import { solutionPages } from "@/data/solutions";
 import { articles } from "@/data/articles";

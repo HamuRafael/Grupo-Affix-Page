@@ -20,8 +20,9 @@ function text(value: unknown, limit: number) {
 }
 
 // Envio delegado ao script PHP que já roda na infraestrutura da Affix.
+// "||" em vez de "??": variável definida porém vazia também cai no padrão.
 const CONTACT_ENDPOINT =
-  process.env.CONTACT_PHP_ENDPOINT ?? "https://grupoaffix.com.br/php/sendemail.php";
+  process.env.CONTACT_PHP_ENDPOINT || "https://grupoaffix.com.br/php/sendemail.php";
 
 export async function POST(request: NextRequest) {
   const allowedOrigin = process.env.ALLOWED_ORIGIN;
@@ -53,17 +54,22 @@ export async function POST(request: NextRequest) {
     recaptchaToken: text(payload["g-recaptcha-response"], 4096),
   };
 
-  if (
-    contact.fullName.length < 3 ||
-    !emailPattern.test(contact.email) ||
-    contact.phone.replace(/\D/g, "").length < 10 ||
-    contact.cnpj.replace(/\D/g, "").length !== 14 ||
-    !contact.service ||
-    !contact.annualRevenue ||
-    contact.message.length < 10 ||
-    contact.consent !== "accepted"
-  ) {
-    return NextResponse.json({ message: "Revise os campos obrigatórios e tente novamente." }, { status: 422 });
+  // Apontar o campo problemático evita que o visitante fique adivinhando o que corrigir.
+  const problemas: string[] = [];
+  if (contact.fullName.length < 3) problemas.push("informe seu nome completo");
+  if (!emailPattern.test(contact.email)) problemas.push("informe um e-mail válido");
+  if (contact.phone.replace(/\D/g, "").length < 10) problemas.push("informe um telefone com DDD");
+  if (contact.cnpj.replace(/\D/g, "").length !== 14) problemas.push("informe um CNPJ com 14 dígitos");
+  if (!contact.service) problemas.push("selecione a solução de interesse");
+  if (!contact.annualRevenue) problemas.push("selecione o faturamento anual");
+  if (contact.message.length < 10) problemas.push("descreva sua necessidade em pelo menos 10 caracteres");
+  if (contact.consent !== "accepted") problemas.push("marque a autorização de uso dos dados");
+
+  if (problemas.length) {
+    return NextResponse.json(
+      { message: `Revise antes de enviar: ${problemas.join("; ")}.` },
+      { status: 422 },
+    );
   }
 
   if (!contact.recaptchaToken) {
@@ -98,7 +104,8 @@ export async function POST(request: NextRequest) {
       // antigo. Sem "manual" o fetch seguiria o redirecionamento e perderíamos o sinal.
       redirect: "manual",
     });
-  } catch {
+  } catch (error) {
+    console.error("[contact] falha no fetch ao endpoint PHP:", error);
     return NextResponse.json({ message: "Não foi possível enviar agora. Use telefone ou WhatsApp." }, { status: 502 });
   }
 

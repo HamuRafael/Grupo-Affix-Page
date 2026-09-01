@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Icon } from "@/components/Icon";
+import { JobApplicationForm } from "@/components/JobApplicationForm";
 import { jobs } from "@/data/jobs";
 import { company, cultureValues } from "@/data/site";
 import { defaultOgImage, ogDefaults, siteUrl } from "@/data/seo";
@@ -71,12 +72,7 @@ export default function CareersPage() {
                       <li key={item}><Icon name="check" size={17} /> {item}</li>
                     ))}
                   </ul>
-                  <a
-                    className="button button-gold"
-                    href={`mailto:${company.email}?subject=${encodeURIComponent(`Candidatura: ${job.title}`)}`}
-                  >
-                    Candidatar-se <Icon name="arrow" size={19} />
-                  </a>
+                  <JobApplicationForm jobTitle={job.title} />
                 </div>
               </details>
             ))}

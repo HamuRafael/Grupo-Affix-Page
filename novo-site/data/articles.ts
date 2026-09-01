@@ -30,32 +30,32 @@ export const articles: Article[] = [
     sections: [
       {
         paragraphs: [
-          "A securitização é um processo financeiro em que uma empresa transforma seus recebíveis ou ativos em recursos financeiros por meio da emissão de títulos negociáveis no mercado. Esses títulos são adquiridos por investidores, permitindo à empresa obter liquidez imediata e investir no crescimento do seu negócio.",
-          "Empresas de diversos setores, como o financeiro, comercial e agropecuário, utilizam a securitização para antecipar receitas, reduzir riscos de inadimplência e otimizar sua gestão de caixa. Essa estratégia não apenas beneficia as empresas, mas também oferece aos investidores uma alternativa atrativa de rendimento, muitas vezes com garantia de lastro em ativos reais.",
+      "Securitização é uma forma de estruturar direitos creditórios — valores que uma empresa tem a receber — para conectá-los ao mercado de capitais. A estrutura pode envolver a cessão desses recebíveis e a emissão de valores mobiliários, conforme a operação escolhida.",
+      "Para a empresa cedente, a operação pode antecipar recursos que só entrariam no caixa no futuro. As condições, os custos, as garantias e a alocação dos riscos variam conforme os documentos da operação e a análise de crédito.",
         ],
       },
       {
         heading: "Como funciona a Securitização?",
         paragraphs: [
-          "O processo de securitização envolve a transferência de recebíveis de uma empresa para uma entidade chamada Sociedade de Propósito Específico (SPE). Essa SPE emite títulos baseados nesses ativos e os vende a investidores no mercado financeiro. Os investidores recebem retornos com base nos pagamentos dos recebíveis pela empresa de origem.",
-          "Um exemplo comum são os Fundos de Investimento em Direitos Creditórios (FIDCs), que estruturam operações de securitização para empresas, proporcionando flexibilidade financeira e acesso a recursos a custos competitivos.",
+          "Em linhas gerais, a empresa identifica os recebíveis que pretende negociar, a documentação é analisada e as partes definem preço, prazo, garantias e responsabilidades. A forma jurídica da estrutura pode variar; por isso, cada operação deve ser examinada individualmente.",
+          "Um FIDC é um fundo que investe em direitos creditórios. Ele pode adquirir recebíveis de empresas, desde que a operação atenda à política do fundo e aos critérios de análise aplicáveis. FIDC e companhia securitizadora são estruturas diferentes, embora ambas atuem no universo dos recebíveis.",
         ],
         quote: {
-          text: "A securitização transforma desafios financeiros em oportunidades, conectando empresas a investidores em busca de rentabilidade e segurança.",
+          text: "Uma boa estrutura de recebíveis começa com informação confiável, documentos consistentes e análise adequada dos riscos.",
           author: "Grupo Affix",
         },
       },
       {
         heading: "Benefícios da Securitização",
         list: [
-          "Liquidez imediata para empresas ao antecipar recebíveis.",
-          "Diversificação das fontes de financiamento corporativo.",
-          "Mitigação de riscos de inadimplência ao transferir ativos.",
-          "Possibilidade de menores custos financeiros em comparação a empréstimos.",
-          "Cria oportunidades de investimento atrativas e seguras.",
+          "Possibilidade de antecipar valores a receber, conforme aprovação da operação.",
+          "Alternativa para diversificar fontes de recursos da empresa.",
+          "Estruturação de prazos e condições compatíveis com o ciclo de vendas.",
+          "Análise individual de recebíveis, sacados e documentação.",
+          "Maior previsibilidade de caixa quando a operação é adequada ao negócio.",
         ],
         paragraphs: [
-          "A securitização é uma ferramenta poderosa para alavancar o potencial financeiro das empresas, permitindo que elas se concentrem no crescimento e na inovação sem comprometer sua saúde financeira.",
+          "A securitização não substitui o planejamento financeiro. Antes de contratar, compare custos, obrigações, garantias e impactos contábeis com o apoio de profissionais habilitados.",
         ],
       },
     ],
@@ -72,23 +72,23 @@ export const articles: Article[] = [
     sections: [
       {
         paragraphs: [
-          "O FIDC, Fundo de Investimento em Direitos Creditórios, é um fundo que destina a maior parte do seu patrimônio à compra de créditos a receber de empresas, como duplicatas, cheques e contratos. Na prática, ele funciona como uma ponte entre empresas que precisam de caixa agora e investidores que buscam rentabilidade.",
+      "O FIDC, Fundo de Investimento em Direitos Creditórios, é uma modalidade de fundo que investe predominantemente em direitos creditórios, como valores originados de duplicatas, contratos e outros recebíveis. Sua constituição e funcionamento seguem regras da Comissão de Valores Mobiliários (CVM).",
           "Quando uma empresa vende a prazo, o dinheiro só entra no caixa no vencimento das faturas. Ao ceder esses recebíveis a um FIDC, ela recebe os valores de forma antecipada e pode usar os recursos em compras, folha de pagamento, estoque ou expansão.",
         ],
       },
       {
         heading: "Por que o FIDC melhora a liquidez?",
         list: [
-          "A empresa transforma vendas a prazo em capital de giro imediato.",
-          "O limite de operação acompanha o volume de vendas, crescendo junto com o negócio.",
-          "A operação não é um empréstimo, é a venda de um direito que a empresa já possui.",
-          "A análise considera a qualidade dos títulos, o que pode beneficiar empresas em crescimento.",
+          "A empresa pode antecipar valores de vendas a prazo, após análise e aprovação.",
+          "A capacidade de operação depende da qualidade dos recebíveis, da documentação e das políticas de crédito.",
+          "A cessão de recebíveis tem características próprias e deve ser diferenciada de um empréstimo conforme os contratos e as responsabilidades assumidas.",
+          "A análise costuma considerar títulos, sacados, histórico de pagamento e concentração da carteira.",
         ],
       },
       {
         heading: "Quem regula e fiscaliza",
         paragraphs: [
-          "Os FIDCs são regulamentados pela Comissão de Valores Mobiliários (CVM) e contam com estruturas de administração, custódia e auditoria independentes, o que traz governança e transparência para as operações.",
+          "Os FIDCs são regulados pela CVM, inclusive pelas regras específicas do Anexo Normativo II da Resolução CVM 175. A estrutura de cada fundo define os prestadores de serviços, suas responsabilidades e as informações que devem ser divulgadas.",
           "É esse arranjo que permite ao Grupo Affix, atuando como FIDC e Securitizadora desde 2013, oferecer soluções de antecipação com análise individual de cada operação.",
         ],
       },
@@ -97,26 +97,26 @@ export const articles: Article[] = [
   {
     slug: "beneficios-fiscais-securitizacao",
     datePublished: "2026-08-28",
-    title: "Benefícios fiscais na securitização de recebíveis",
+    title: "Cessão de recebíveis: cuidados tributários e contábeis",
     description:
-      "Saiba como empresas podem otimizar sua carga tributária ao utilizar instrumentos de securitização.",
+      "Entenda por que a tributação e a contabilização de uma cessão de recebíveis exigem análise individual da operação.",
     image: "/images/solucoes/capital-de-giro.jpg",
     imageAlt: "Aperto de mãos sobre mesa com contrato e relatórios",
     tags: ["Securitização", "Tributos", "Gestão Financeira"],
     sections: [
       {
         paragraphs: [
-          "Além de melhorar o fluxo de caixa, a securitização de recebíveis pode trazer efeitos positivos na organização fiscal e contábil das empresas. A operação de cessão de créditos tem natureza diferente da de um empréstimo, e essa diferença aparece no balanço.",
-          "Em um financiamento tradicional, a empresa assume uma dívida e registra juros como despesa ao longo do tempo. Na cessão de recebíveis, a empresa vende um ativo que já possui, o que não aumenta seu endividamento.",
+      "A cessão de recebíveis pode afetar a escrituração contábil e a tributação da empresa. Não existe, porém, um benefício fiscal automático: o tratamento depende do regime tributário, dos termos contratuais, da existência de coobrigação e das particularidades da operação.",
+      "Também não é seguro concluir, de forma genérica, que uma cessão não gera endividamento. A classificação contábil e os efeitos econômicos devem ser avaliados pela administração da empresa e por seus assessores contábeis e tributários.",
         ],
       },
       {
         heading: "Pontos que merecem atenção",
         list: [
-          "O deságio da cessão pode ser tratado como despesa dedutível, conforme o regime tributário da empresa.",
-          "A operação não gera passivo bancário, o que preserva indicadores de endividamento.",
-          "Balanços mais saudáveis tendem a melhorar a avaliação de crédito da empresa.",
-          "Cada regime tributário tem regras próprias, a análise deve ser feita caso a caso.",
+          "O deságio, as despesas e as receitas da operação exigem avaliação conforme o regime tributário aplicável.",
+          "Cláusulas como coobrigação, garantias e recompra podem mudar a análise jurídica, contábil e tributária.",
+          "Os reflexos nos indicadores financeiros dependem da essência econômica da transação e da forma de contabilização adotada.",
+          "A decisão deve ser tomada caso a caso, com documentação e orientação especializada.",
         ],
       },
       {
@@ -140,15 +140,15 @@ export const articles: Article[] = [
     sections: [
       {
         paragraphs: [
-          "O mercado de FIDCs vem crescendo de forma consistente no Brasil, impulsionado pela busca das empresas por alternativas de financiamento fora do sistema bancário tradicional e pelo interesse dos investidores em produtos com lastro em ativos reais.",
-          "A evolução da regulamentação da CVM ampliou o acesso a esse mercado, aumentando a transparência das carteiras e criando novas possibilidades de estruturação de fundos.",
+      "Os FIDCs têm se consolidado como uma alternativa de estruturação para direitos creditórios no mercado brasileiro. O interesse por essa modalidade acompanha a necessidade de empresas organizarem fluxo de caixa e de investidores avaliarem ativos com critérios de risco claros.",
+      "O ambiente regulatório continua evoluindo. Por isso, participantes do mercado devem acompanhar as normas da CVM e os documentos específicos de cada fundo antes de tomar decisões.",
         ],
       },
       {
         heading: "Movimentos que estão moldando o setor",
         list: [
           "Digitalização das operações, com registro eletrônico de duplicatas e menos papel.",
-          "Ampliação do acesso de investidores a fundos antes restritos.",
+          "Aprimoramento das regras de transparência e divulgação de informações.",
           "Crescimento da securitização no agronegócio e no setor imobiliário.",
           "Uso de dados e tecnologia para análise de crédito mais rápida e precisa.",
         ],
@@ -156,8 +156,8 @@ export const articles: Article[] = [
       {
         heading: "O que isso significa para as empresas",
         paragraphs: [
-          "Com mais competição e tecnologia, a tendência é que a antecipação de recebíveis fique cada vez mais ágil e acessível para empresas de todos os portes, incluindo pequenos e médios negócios que antes dependiam apenas de bancos.",
-          "Para quem precisa de capital de giro, entender esse mercado ajuda a negociar melhores condições e a escolher parceiros sólidos e transparentes.",
+          "Tecnologia e dados podem tornar processos de análise mais eficientes, mas não eliminam a necessidade de validar documentos, sacados e condições comerciais.",
+          "Para quem busca capital de giro, entender como funciona a antecipação de recebíveis ajuda a comparar propostas e escolher parceiros transparentes.",
         ],
       },
     ],
@@ -175,23 +175,23 @@ export const articles: Article[] = [
       {
         paragraphs: [
           "O agronegócio tem um ciclo financeiro particular: os custos se concentram no plantio, e a receita só chega na colheita e na venda da produção. A securitização ajuda a equilibrar esse descompasso, permitindo que produtores e empresas do setor antecipem valores a receber.",
-          "No agro, é possível antecipar recebíveis como duplicatas de vendas de grãos, contratos de fornecimento, cheques de transações comerciais, boletos relacionados a vendas de produtos agrícolas e até mesmo recebíveis de financiamentos agrícolas.",
+      "Entre os exemplos de direitos creditórios que podem ser analisados estão recebíveis originados de vendas, contratos comerciais e documentos que comprovem a operação. A elegibilidade depende do tipo de título, do devedor, das garantias e da documentação apresentada.",
         ],
       },
       {
         heading: "Como o produtor se beneficia",
         list: [
-          "Caixa disponível para custeio de plantio, sementes e insumos.",
-          "Financiamento de máquinas e implementos sem esperar a safra.",
-          "Prazos negociados de acordo com a data da colheita.",
-          "Antecipação de subvenções e programas de incentivo ao setor.",
+          "Recursos para organizar compras, custeio e compromissos do ciclo produtivo.",
+          "Maior previsibilidade de caixa entre o plantio, a colheita e a comercialização.",
+          "Possibilidade de negociar prazos de acordo com o ciclo comercial, quando a operação for aprovada.",
+          "Análise de recebíveis vinculados à atividade, respeitando a documentação e as garantias disponíveis.",
         ],
       },
       {
         heading: "Um mercado em expansão",
         paragraphs: [
           "Instrumentos como a securitização de recebíveis agrícolas vêm ganhando espaço como alternativa ao crédito rural tradicional, dando mais autonomia ao produtor na gestão do seu fluxo de caixa.",
-          "O Grupo Affix oferece soluções financeiras específicas para o agronegócio, possibilitando maior fluidez financeira para os produtores.",
+          "O Grupo Affix analisa cada operação de forma individual, considerando os documentos, o ciclo do negócio e as características dos recebíveis apresentados.",
         ],
       },
     ],
@@ -209,7 +209,7 @@ export const articles: Article[] = [
       {
         paragraphs: [
           "Toda operação de crédito envolve riscos, e na securitização não é diferente. Os principais são a inadimplência dos devedores dos títulos, a flutuação das taxas de juros e mudanças nas condições do mercado.",
-          "A boa notícia é que esses riscos podem ser medidos e mitigados com uma análise rigorosa dos recebíveis e uma estrutura de operação bem desenhada.",
+      "Esses riscos podem ser avaliados e reduzidos com análise rigorosa dos recebíveis e uma estrutura bem documentada, mas não são eliminados. Por isso, a decisão deve considerar o perfil da carteira e as responsabilidades previstas em contrato.",
         ],
       },
       {
@@ -219,13 +219,14 @@ export const articles: Article[] = [
           "Diversificação da carteira, evitando concentração em poucos devedores.",
           "Verificação da documentação que comprova a existência dos créditos.",
           "Acompanhamento contínuo da carteira após a operação.",
+          "Definição clara de garantias, limites e responsabilidades entre as partes.",
         ],
       },
       {
         heading: "O papel da análise especializada",
         paragraphs: [
           "O processo de análise envolve a verificação da documentação dos recebíveis, a análise de crédito do cliente, a avaliação dos riscos envolvidos e a definição das condições de antecipação, como prazos e taxas.",
-          "Contar com uma equipe especializada em análise, precificação e recuperação de carteiras de crédito faz diferença na segurança de cada operação.",
+          "Contar com uma equipe especializada em análise, precificação e acompanhamento de carteiras contribui para decisões mais bem fundamentadas. Ainda assim, cada operação está sujeita aos riscos previstos em seus documentos e às condições de mercado.",
         ],
       },
     ],

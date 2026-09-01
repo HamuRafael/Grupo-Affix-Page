@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { ImageResponse } from "next/og";
 
 export const alt = "Grupo Affix, somando aos seus negócios";
