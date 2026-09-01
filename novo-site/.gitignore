@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.log
+.vercel/
+tsconfig.tsbuildinfo
+
+# Os scripts PHP guardados aqui contêm chaves em texto puro e não fazem parte da
+# aplicação Next.js. Não devem entrar no histórico do repositório.
+*.php
+
+.vercel
