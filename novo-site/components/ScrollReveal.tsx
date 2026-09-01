@@ -68,6 +68,10 @@ export function ScrollReveal() {
       };
     }
 
+    // Reveal de mão única: uma vez visível, a seção fica visível.
+    // A versão que "desrevelava" ao sair de vista deixava a última seção da
+    // página com opacity 0 no fim do scroll, engolindo os cliques do botão
+    // "Fale com um especialista" sem nenhum feedback.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -75,11 +79,8 @@ export function ScrollReveal() {
 
           if (entry.isIntersecting) {
             target.dataset.scrollVisible = "true";
-            return;
+            observer.unobserve(target);
           }
-
-          target.dataset.scrollDirection = entry.boundingClientRect.top < 0 ? "up" : "down";
-          delete target.dataset.scrollVisible;
         });
       },
       {

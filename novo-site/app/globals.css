@@ -1273,6 +1273,9 @@ body.interactions-ready .process-steps li.is-active .step-number {
   border: 1px solid rgba(199, 164, 90, 0.18);
   border-radius: 50%;
   content: "";
+  /* Decoração pura: sem isto, o círculo fica por cima do botão no layout
+     de celular e engole os toques em "Fale com um especialista". */
+  pointer-events: none;
 }
 
 .contact-layout {

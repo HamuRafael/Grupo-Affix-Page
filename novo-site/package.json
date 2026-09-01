@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:site": "next build && node scripts/achatar-prefetch.js",
     "start": "next start",
     "lint": "eslint ."
   },

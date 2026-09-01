@@ -13,4 +13,9 @@ const nextConfig: NextConfig = {
   },
 };
 
+// Nota: no modo export, o prefetch do Next 16.3 pede arquivos achatados
+// (__next.rota.__PAGE__.txt) mas o exporter grava pastas aninhadas
+// (__next.rota/__PAGE__.txt). O scripts/achatar-prefetch.js corrige a pasta
+// out/ depois do build; rode o build sempre via "npm run build:site".
+
 export default nextConfig;

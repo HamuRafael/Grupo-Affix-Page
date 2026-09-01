@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   publisher: siteName,
   icons: {
     icon: [
-      { url: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+      { url: "/favicon.ico?v=20260901", type: "image/x-icon", sizes: "any" },
       { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
       { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
