@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import type { SimulationData } from "@/components/Simulator";
 import { Icon } from "@/components/Icon";
@@ -21,6 +20,20 @@ function modoDemonstracao() {
   if (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT) return false;
   const host = window.location.hostname;
   return host === "localhost" || host === "127.0.0.1" || host.startsWith("192.168.");
+}
+
+const RECAPTCHA_SRC = "https://www.google.com/recaptcha/api.js";
+
+// O script do Google (~200 KB com dependências) só entra quando a pessoa
+// interage com o formulário, em vez de pesar no carregamento de toda página.
+// Ao carregar, o api.js varre o DOM e renderiza todos os .g-recaptcha presentes.
+function carregarRecaptcha() {
+  if (document.querySelector(`script[src^="${RECAPTCHA_SRC}"]`)) return;
+  const script = document.createElement("script");
+  script.src = RECAPTCHA_SRC;
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
 }
 
 // O token do reCAPTCHA vale para um envio só; sem limpar, uma segunda tentativa falha.
@@ -62,7 +75,13 @@ export function ContactForm() {
     }
 
     window.addEventListener("affix:simulation", applySimulation);
-    return () => window.removeEventListener("affix:simulation", applySimulation);
+    // Abrir o modal de contato já é intenção clara: adianta o reCAPTCHA
+    // para o checkbox estar pronto quando a pessoa chegar nele.
+    window.addEventListener("affix:open-contact", carregarRecaptcha);
+    return () => {
+      window.removeEventListener("affix:simulation", applySimulation);
+      window.removeEventListener("affix:open-contact", carregarRecaptcha);
+    };
   }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -131,7 +150,14 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
+    <form
+      className="contact-form"
+      ref={formRef}
+      onSubmit={handleSubmit}
+      onFocusCapture={carregarRecaptcha}
+      onPointerEnter={carregarRecaptcha}
+      onTouchStart={carregarRecaptcha}
+    >
       <div className="form-grid">
         <label>
           <span>Nome completo *</span>
@@ -211,7 +237,6 @@ export function ContactForm() {
         <input name="website" type="text" tabIndex={-1} autoComplete="off" />
       </label>
 
-      <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
       <div className="recaptcha-field">
         <div className="g-recaptcha" data-sitekey={recaptchaSiteKey} />
       </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { enableSolutionCardHoverImages, solutions } from "@/data/site";
 import { Icon } from "@/components/Icon";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SolutionCardVisual } from "@/components/SolutionCardVisual";
 
 export function Solutions() {
   return (
@@ -23,7 +24,7 @@ export function Solutions() {
               key={solution.title}
             >
               {enableSolutionCardHoverImages ? (
-                <span className="solution-card-visual" style={{ backgroundImage: `url(${solution.image})` }} aria-hidden="true" />
+                <SolutionCardVisual image={solution.image} />
               ) : null}
               <span className="solution-icon"><Icon name={solution.icon} size={24} /></span>
               <h3>{solution.title}</h3>

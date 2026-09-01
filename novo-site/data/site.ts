@@ -74,7 +74,7 @@ export const solutions = [
     description:
       "Receba de forma antecipada os valores de vendas a prazo, otimizando o fluxo de caixa da sua empresa.",
     href: "/solucoes/antecipacao-de-recebiveis",
-    image: "/images/solucoes/antecipacao-recebiveis.jpg",
+    image: "/images/solucoes/antecipacao-recebiveis.webp",
   },
   {
     icon: "growth",
@@ -82,7 +82,7 @@ export const solutions = [
     description:
       "Com acesso facilitado ao capital de giro, utilizando garantia real, como imóveis ou automóveis, para obter melhores condições de financiamento e impulsionar.",
     href: "/solucoes/capital-de-giro",
-    image: "/images/solucoes/capital-de-giro.jpg",
+    image: "/images/solucoes/capital-de-giro.webp",
   },
   {
     icon: "agro",
@@ -90,7 +90,7 @@ export const solutions = [
     description:
       "Oferecemos crédito especializado para produtores rurais e empresas do agronegócio, viabilizando investimentos em maquinários, insumos e expansão de negócios.",
     href: "/solucoes/solucoes-agro",
-    image: "/images/solucoes/solucoes-agro.jpg",
+    image: "/images/solucoes/solucoes-agro.webp",
   },
   {
     icon: "lock",
@@ -98,7 +98,7 @@ export const solutions = [
     description:
       "Seus recebíveis são antecipados enquanto os clientes pagam diretamente na conta, gerenciada pelo Grupo Affix.",
     href: "/solucoes/conta-escrow",
-    image: "/images/solucoes/conta-escrow.jpg",
+    image: "/images/solucoes/conta-escrow.webp",
   },
   {
     icon: "building",
@@ -106,7 +106,7 @@ export const solutions = [
     description:
       "Antecipe parcelas da venda do imóvel e garanta capital de giro, fluxo de caixa e novos investimentos para sua empresa.",
     href: "/solucoes/credito-para-construtoras",
-    image: "/images/solucoes/credito-construtoras.jpg",
+    image: "/images/solucoes/credito-construtoras.webp",
   },
   {
     icon: "home",
@@ -114,7 +114,7 @@ export const solutions = [
     description:
       "Antecipe os valores de aluguéis a receber e obtenha liquidez para novos investimentos.",
     href: "/solucoes/antecipacao-de-alugueis",
-    image: "/images/solucoes/antecipacao-alugueis.jpeg",
+    image: "/images/solucoes/antecipacao-alugueis.webp",
   },
   {
     icon: "creditcard",
@@ -122,7 +122,7 @@ export const solutions = [
     description:
       "Receba antecipadamente os valores de vendas realizadas via cartão de crédito.",
     href: "/solucoes/antecipacao-de-recebiveis",
-    image: "/images/solucoes/antecipacao-recebiveis.jpg",
+    image: "/images/solucoes/antecipacao-recebiveis.webp",
   },
   {
     icon: "briefcase",
@@ -131,7 +131,7 @@ export const solutions = [
       "Conte com uma equipe capacitada para administrar seus ativos securitizados com excelência.",
     href: "/#contato",
     ctaLabel: "Falar com especialista",
-    image: "/images/fidc-investimento.jpg",
+    image: "/images/fidc-investimento.webp",
   },
 ] as const;
 
