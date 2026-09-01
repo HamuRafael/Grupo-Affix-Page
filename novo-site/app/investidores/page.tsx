@@ -88,7 +88,7 @@ export default function InvestorsPage() {
           </div>
           <div className="detail-media">
             <Image
-              src="/images/fidc-investimento.jpg"
+              src="/images/fidc-investimento.webp"
               alt="Blocos de madeira formando a sigla FIDC com pilhas de moedas sobre eles"
               fill
               sizes="(max-width: 900px) 100vw, 44vw"

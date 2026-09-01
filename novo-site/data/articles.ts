@@ -100,7 +100,7 @@ export const articles: Article[] = [
     title: "Cessão de recebíveis: cuidados tributários e contábeis",
     description:
       "Entenda por que a tributação e a contabilização de uma cessão de recebíveis exigem análise individual da operação.",
-    image: "/images/solucoes/capital-de-giro.jpg",
+    image: "/images/solucoes/capital-de-giro.webp",
     imageAlt: "Aperto de mãos sobre mesa com contrato e relatórios",
     tags: ["Securitização", "Tributos", "Gestão Financeira"],
     sections: [

@@ -22,7 +22,7 @@ export const solutionPages: SolutionPage[] = [
     metaDescription:
       "Antecipe duplicatas, cheques, boletos e contratos com análise rápida e atendimento personalizado do Grupo Affix.",
     image: {
-      src: "/images/solucoes/antecipacao-recebiveis.jpg",
+      src: "/images/solucoes/antecipacao-recebiveis.webp",
       alt: "Equipe reunida analisando gráficos de desempenho em um notebook",
     },
     intro: [
@@ -62,7 +62,7 @@ export const solutionPages: SolutionPage[] = [
     metaDescription:
       "Capital de giro com garantia real de imóveis ou bens, com condições flexíveis e processo ágil no Grupo Affix.",
     image: {
-      src: "/images/solucoes/capital-de-giro.jpg",
+      src: "/images/solucoes/capital-de-giro.webp",
       alt: "Aperto de mãos sobre uma mesa com contrato, notebook e relatórios financeiros",
     },
     intro: [
@@ -119,7 +119,7 @@ export const solutionPages: SolutionPage[] = [
     metaDescription:
       "Crédito especializado para produtores rurais: antecipação de recebíveis agrícolas, financiamento de safra e prazos ajustados à colheita.",
     image: {
-      src: "/images/solucoes/solucoes-agro.jpg",
+      src: "/images/solucoes/solucoes-agro.webp",
       alt: "Lavoura em fileiras ao amanhecer",
     },
     intro: [
@@ -172,7 +172,7 @@ export const solutionPages: SolutionPage[] = [
     metaDescription:
       "Mais segurança em suas transações: conta escrow com gestão profissional do Grupo Affix e abertura em apenas um dia.",
     image: {
-      src: "/images/solucoes/conta-escrow.jpg",
+      src: "/images/solucoes/conta-escrow.webp",
       alt: "Fachada de vidro de um edifício corporativo visto de baixo",
     },
     intro: [
@@ -225,7 +225,7 @@ export const solutionPages: SolutionPage[] = [
     metaDescription:
       "Fomento imobiliário para construtoras e incorporadoras: antecipação de parcelas, financiamento de projetos e assessoria especializada.",
     image: {
-      src: "/images/solucoes/credito-construtoras.jpg",
+      src: "/images/solucoes/credito-construtoras.webp",
       alt: "Vista aérea de um bairro residencial com casas e ruas arborizadas",
     },
     intro: [
@@ -278,7 +278,7 @@ export const solutionPages: SolutionPage[] = [
     metaDescription:
       "Antecipe os valores de aluguéis a receber e obtenha liquidez imediata para novos investimentos com o Grupo Affix.",
     image: {
-      src: "/images/solucoes/antecipacao-alugueis.jpeg",
+      src: "/images/solucoes/antecipacao-alugueis.webp",
       alt: "Consultor apresentando cálculos em uma negociação de contrato de aluguel",
     },
     intro: [
