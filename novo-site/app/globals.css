@@ -2389,6 +2389,11 @@ body.interactions-ready .process-steps li.is-active .step-number {
   border-top: 1px solid var(--line);
 }
 
+/* Card do banco de talentos: sem summary, o padding precisa vir daqui. */
+.job-card--talent {
+  padding: 26px 24px;
+}
+
 .job-card-body > p {
   padding-top: 18px;
   color: var(--ink-soft);

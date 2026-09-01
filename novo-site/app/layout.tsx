@@ -24,6 +24,14 @@ export const metadata: Metadata = {
   applicationName: siteName,
   creator: siteName,
   publisher: siteName,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {

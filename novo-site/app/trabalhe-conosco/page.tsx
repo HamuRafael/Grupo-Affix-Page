@@ -37,12 +37,20 @@ export default function CareersPage() {
           <div className="detail-intro">
             <h2 id="jobs-title">Vagas abertas</h2>
             <p>
-              Confira as oportunidades disponíveis e candidate-se enviando seu currículo. Mesmo sem vaga aberta na sua área, você pode enviar seu currículo para o nosso banco de talentos.
+              {jobs.length > 0
+                ? "Confira as oportunidades disponíveis e candidate-se enviando seu currículo. Mesmo sem vaga aberta na sua área, você pode enviar seu currículo para o nosso banco de talentos."
+                : "No momento não temos vagas abertas, mas nosso banco de talentos está sempre de portas abertas. Envie seu currículo e entraremos em contato quando surgir uma oportunidade com o seu perfil."}
             </p>
           </div>
-          <p className="legal-notice">
-            <strong>Vagas de demonstração:</strong> conteúdo de exemplo para validação do layout. Substituir pelas vagas reais aprovadas pelo RH antes da publicação.
-          </p>
+
+          {/* Sem vagas na lista (data/jobs.ts), a página vira banco de talentos. */}
+          {jobs.length === 0 ? (
+            <div className="jobs-list">
+              <div className="job-card job-card--talent">
+                <JobApplicationForm jobTitle="Banco de talentos" />
+              </div>
+            </div>
+          ) : null}
 
           <div className="jobs-list">
             {jobs.map((job) => (
