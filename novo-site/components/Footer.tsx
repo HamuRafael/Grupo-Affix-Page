@@ -24,7 +24,7 @@ export function Footer() {
           </ul>
           <Image
             className="footer-gptw"
-            src="/images/selo-gptw.png"
+            src="/images/selo-gptw.webp"
             alt="Selo Great Place to Work, empresa certificada de abril de 2026 a abril de 2027"
             width={184}
             height={260}

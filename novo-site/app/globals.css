@@ -486,7 +486,8 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: rgba(5, 5, 5, 0.45);
+  /* Dourado por padrão: o convite para rolar precisa se destacar de cara. */
+  color: var(--gold-dark);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -496,7 +497,7 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
 }
 
 .hero-scroll:hover {
-  color: var(--gold-dark);
+  color: var(--gold);
 }
 
 .hero-scroll-mouse {
@@ -505,13 +506,13 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
   height: 42px;
   justify-content: center;
   padding-top: 7px;
-  border: 1.5px solid rgba(5, 5, 5, 0.3);
+  border: 1.5px solid var(--gold-dark);
   border-radius: 999px;
   transition: border-color 180ms ease;
 }
 
 .hero-scroll:hover .hero-scroll-mouse {
-  border-color: var(--gold-dark);
+  border-color: var(--gold);
 }
 
 .hero-scroll-dot {

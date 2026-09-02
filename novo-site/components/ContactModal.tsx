@@ -37,8 +37,10 @@ export function ContactModal() {
       description="Preencha os dados e nossa equipe entra em contato."
     >
       <p className="contact-modal-channels">
-        Se preferir: <a href={company.phoneHref}>{company.phoneDisplay}</a> ou{" "}
-        <a href={`mailto:${company.email}`}>{company.email}</a>
+        Se preferir:{" "}
+        <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer">
+          (61) 99399-8904
+        </a>
       </p>
       <ContactForm />
     </ModalShell>

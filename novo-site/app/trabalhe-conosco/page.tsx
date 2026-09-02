@@ -110,7 +110,7 @@ export default function CareersPage() {
         <div className="container gptw-layout">
           <figure className="gptw-badge">
             <Image
-              src="/images/selo-gptw.png"
+              src="/images/selo-gptw.webp"
               alt="Selo Great Place to Work, empresa certificada no Brasil"
               width={400}
               height={566}

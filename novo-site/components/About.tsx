@@ -10,10 +10,10 @@ export function About() {
         <div className="container about-grid">
           <div className="about-image-wrap">
             <Image
-              src="/images/recepcao-affix.jpeg"
+              src="/images/recepcao-affix.webp"
               alt="Recepção do Grupo Affix"
-              width={1580}
-              height={532}
+              width={1400}
+              height={492}
               sizes="(max-width: 900px) 100vw, 50vw"
             />
             <span className="about-badge"><strong>+13 anos</strong> de experiência</span>

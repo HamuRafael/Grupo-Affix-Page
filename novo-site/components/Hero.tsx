@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { ContactModalTrigger } from "@/components/ContactModal";
 import { SimulatorModalTrigger } from "@/components/SimulatorModal";
@@ -24,7 +23,18 @@ export function Hero() {
           </div>
         </div>
         <div className="hero-mark" aria-hidden="true">
-          <Image src="/images/logo-affix-escuro.png" alt="" width={1560} height={630} priority />
+          {/* img puro com srcset: no modo export o next/image não gera versões
+              responsivas, e o PageSpeed cobrava a logo de 1240px num slot de ~550px. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo-affix-escuro.webp"
+            srcSet="/images/logo-affix-escuro-640.webp 640w, /images/logo-affix-escuro.webp 1240w"
+            sizes="(max-width: 900px) 76vw, 43vw"
+            alt=""
+            width={1240}
+            height={509}
+            decoding="async"
+          />
         </div>
       </div>
       <a className="hero-scroll" href="#solucoes" aria-label="Rolar para a próxima seção">
