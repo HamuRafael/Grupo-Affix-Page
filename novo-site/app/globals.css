@@ -454,7 +454,7 @@ body.scroll-reveal-ready [data-scroll-reveal="true"][data-scroll-visible="true"]
   z-index: 1;
   top: 50%;
   right: -40px;
-  width: min(40vw, 560px);
+  width: min(43vw, 620px);
   animation: hero-mark-float 7s ease-in-out infinite;
   opacity: 0.94;
   transform: translateY(-50%);
@@ -1868,8 +1868,9 @@ body.interactions-ready .process-steps li.is-active .step-number {
 
   .hero-mark {
     position: static;
-    width: min(58vw, 300px);
-    margin-top: 38px;
+    width: min(76vw, 380px);
+    /* margin-inline auto centraliza a logo, que antes ficava encostada à esquerda */
+    margin: 38px auto 0;
     animation: none;
     transform: none;
   }
